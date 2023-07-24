@@ -28,6 +28,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::put('/activity/{id}', [ActivityController::class, 'update']);
     Route::get('/activity/{id}', [ActivityController::class, 'get']);
     Route::get('/activity', [ActivityController::class, 'list']);
+    Route::post('/activity/join/{id}', [ActivityController::class, 'join']);
 });
 
 
