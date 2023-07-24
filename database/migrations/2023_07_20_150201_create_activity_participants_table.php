@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Activity::class);
             $table->timestamps();
+            $table->unique(['user_id', 'activity_id']);
         });
     }
 
