@@ -22,4 +22,8 @@ class Activity extends Model
     public function participants(): HasMany {
         return $this->hasMany(ActivityParticipant::class);
     }
+
+    public function dates(): HasMany {
+        return $this->hasMany(ActivityDate::class);
+    }
 }

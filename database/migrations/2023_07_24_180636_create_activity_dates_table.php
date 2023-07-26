@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Activity;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -12,14 +13,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('activities', function (Blueprint $table) {
+        Schema::create('activity_dates', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
-            $table->string('name');
-            $table->longText('description');
             $table->date('from_date');
             $table->date('to_date');
             $table->foreignIdFor(User::class);
+            $table->foreignIdFor(Activity::class);
+            $table->enum('type', ['available', 'unavailable']);
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('activities');
+        Schema::dropIfExists('activity_dates');
     }
 };
