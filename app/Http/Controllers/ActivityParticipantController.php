@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ActivityParticipantResource;
+use App\Models\Activity;
 use App\Models\ActivityParticipant;
 use App\Http\Requests\StoreActivityParticipantRequest;
 use App\Http\Requests\UpdateActivityParticipantRequest;
@@ -36,6 +37,12 @@ class ActivityParticipantController extends Controller
         $activityParticipants = ActivityParticipant::paginate(10);
 
         return ActivityParticipantResource::collection($activityParticipants);
+    }
+
+    public function getByActivity(Request $request, string $id) {
+        $users = Activity::find($id)->users->pluck('name');
+
+        return $users;
     }
 
     public function delete(Request $request) {

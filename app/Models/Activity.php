@@ -26,4 +26,8 @@ class Activity extends Model
     public function dates(): HasMany {
         return $this->hasMany(ActivityDate::class);
     }
+
+    public function users() {
+        return $this->belongsToMany(User::class, 'activity_participants', 'activity_id', 'user_id');
+    }
 }
