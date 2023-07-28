@@ -36,6 +36,16 @@ class ActivityDateController extends Controller
         return $activityDates;
     }
 
+    public function getUserDates(Request $request, string $id) {
+        $activityDates = ActivityDate::select('id', 'from_date', 'to_date', 'type')
+                            ->where('activity_id', $id)
+                            ->where('user_id', $request->user()->id)
+                            ->get()
+                            ->toArray();
+
+        return $activityDates;
+    }
+
     public function delete(Request $request, string $id) {
         //TODO: only allow user to delete there own item
         $activityDate = ActivityDate::find($id);
@@ -43,7 +53,7 @@ class ActivityDateController extends Controller
         $activityDate->delete();
 
         return response()->json([
-            'message' => 'Date successfully deleted'
+            'message' => 'Date sucessfully deleted'
         ], 200);
     }
 }

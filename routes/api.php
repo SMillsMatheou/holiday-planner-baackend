@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\ActivityDateController;
+use App\Http\Controllers\ActivityParticipantController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,9 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::post('/activity/{id}/add-date', [ActivityDateController::class, 'create']);
     Route::get('/activity/{id}/dates', [ActivityDateController::class, 'getByActivity']);
     Route::delete('/activity-date/{id}', [ActivityDateController::class, 'delete']);
+
+    Route::get('/activity/{id}/participants', [ActivityParticipantController::class, 'getByActivity']);
+    Route::get('/activity/{id}/user-dates', [ActivityDateController::class, 'getUserDates']);
 });
 
 
